@@ -1,7 +1,8 @@
 import { useState } from "react";
+import LoanCalculator from "./Components/LoanCalculator";
 
 function App() {
-    return <div className="App">Loan calc goes here</div>;
+    return <LoanCalculator />;
 }
 
 export default App;
