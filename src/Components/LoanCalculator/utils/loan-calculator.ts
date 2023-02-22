@@ -1,20 +1,20 @@
-import { chartInputData, chartOutputItem } from "../types";
+import { chartInputData, chartOutputItem } from "../../../types";
 
 export const calculateLoanData = (
-    propertyPrice,
-    downPayment,
-    interestRate,
-    loanTerm
-) => {
+    propertyPrice: number,
+    downPayment: number,
+    interestRate: number,
+    loanTerm: number
+): number[] => {
     const loanAmount = propertyPrice - downPayment;
     const interest = interestRate / 100 / 12;
     const numberOfPayments = loanTerm * 12;
     const x = Math.pow(1 + interest, numberOfPayments);
-    const perMonthPayment = (loanAmount * (interest * x)) / (x - 1);
-    const totalPayments = perMonthPayment * numberOfPayments;
+    const monthlyPayment = (loanAmount * (interest * x)) / (x - 1);
+    const totalPayments = monthlyPayment * numberOfPayments;
     const totalInterest = totalPayments - loanAmount;
 
-    return [perMonthPayment, totalPayments, totalInterest, loanAmount];
+    return [monthlyPayment, totalPayments, totalInterest, loanAmount];
 };
 
 export const calculateChartData = (data: chartInputData) => {
@@ -26,13 +26,12 @@ export const calculateChartData = (data: chartInputData) => {
 
     for (const [label, dataValue] of Object.entries(data)) {
         const { value, color } = dataValue;
-        const dataItem: chartOutputItem = {
+        result.push({
             label,
             color,
             amount: value,
             share: value / total,
-        };
-        result.push(dataItem);
+        });
     }
 
     return result;

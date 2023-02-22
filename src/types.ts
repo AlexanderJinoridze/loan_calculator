@@ -1,8 +1,10 @@
+interface chartInputItem {
+    value: number;
+    color: string;
+}
+
 export interface chartInputData {
-    chartItemData: {
-        value: number;
-        color: string;
-    };
+    [key: string]: chartInputItem;
 }
 
 export interface chartOutputItem {
