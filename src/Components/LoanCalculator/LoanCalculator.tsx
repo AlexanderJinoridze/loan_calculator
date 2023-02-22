@@ -10,7 +10,6 @@ export default function LoanCalculator({
     propertyPrice = 100,
     maxLoanTerm = 20,
     maxInterestRate = 15,
-    bank = "BOG",
 }) {
     const [downPayment, setDownPayment] = useState(() => propertyPrice * 0.2);
     const [loanTerm, setLoanTerm] = useState(() => defaultLoanTerm);
