@@ -15,14 +15,14 @@ export default function LoanCalculator({
     const [loanTerm, setLoanTerm] = useState(() => defaultLoanTerm);
     const [interestRate, setInterestRate] = useState(() => defaultInterestRate);
     const [monthlyPayment, setMonthlyPayment] = useState(0);
-    const [totalPayment, setTotalPayment] = useState(0);
+    const [sumTotal, setSumTotal] = useState(0);
     const [downPaymentPercent, setDownPaymentPercent] = useState(0);
     const [linearChartData, setLinearChartData] = useState<chartOutputItem[]>(
         []
     );
 
     useEffect(() => {
-        const [monthlyPayment, totalPayments, totalInterest, loanAmount] =
+        const [monthlyPayment, totalPayment, totalInterest, loanAmount] =
             calculateLoanData(
                 propertyPrice,
                 downPayment,
@@ -46,7 +46,7 @@ export default function LoanCalculator({
         });
 
         setMonthlyPayment(monthlyPayment);
-        setTotalPayment(totalPayments);
+        setSumTotal(totalPayment);
         setDownPaymentPercent(downPayment / propertyPrice);
         setLinearChartData(chartData);
     }, [downPayment, loanTerm, interestRate]);
@@ -216,7 +216,7 @@ export default function LoanCalculator({
                         <span>Total Payment</span>
                     </div>
                     <div>
-                        <strong>{formatNumber(totalPayment)}</strong>
+                        <strong>{formatNumber(sumTotal)}</strong>
                     </div>
                 </div>
             </div>

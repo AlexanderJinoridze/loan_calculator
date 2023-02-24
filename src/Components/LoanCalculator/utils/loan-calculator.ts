@@ -11,10 +11,11 @@ export const calculateLoanData = (
     const numberOfPayments = loanTerm * 12;
     const x = Math.pow(1 + interest, numberOfPayments);
     const monthlyPayment = (loanAmount * (interest * x)) / (x - 1);
-    const totalPayments = monthlyPayment * numberOfPayments;
-    const totalInterest = totalPayments - loanAmount;
+    const totalLoanPayment = monthlyPayment * numberOfPayments;
+    const totalPayment = downPayment + totalLoanPayment;
+    const totalInterest = totalLoanPayment - loanAmount;
 
-    return [monthlyPayment, totalPayments, totalInterest, loanAmount];
+    return [monthlyPayment, totalPayment, totalInterest, loanAmount];
 };
 
 export const calculateChartData = (data: chartInputData) => {
